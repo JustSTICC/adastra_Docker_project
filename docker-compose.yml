@@ -1,0 +1,28 @@
+version: "3"
+services:
+  web:
+    environment:
+      - PYTHONUNBUFFERED=true
+    env_file:
+      - .env
+    build: .
+    ports:
+      - "3000:5000"
+    depends_on:
+        - postgres
+  postgres:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+        - POSTGRES_DB=$PG_DATABASE
+        - POSTGRES_USER=$PG_USER
+        - POSTGRES_PASSWORD=$PG_PASSWORD
+    ports:
+        - "5432:5432"
+
+
+volumes:
+    postgres_data:

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Update</title>
+  </head>
+  <body>
+    <form action="{{ url_for('update') }}" method="POST">
+      <input name="id" value="{{game.id}}" hidden/>
+      <label>Game Title</label>
+      <input name="title" type="text" value="{{game.title}}" />
+      <label>Game Developer</label>
+      <select name="developer">
+        {% for o in developers %}
+          {% if o.id == game.developer_id %}
+            <option value="{{o.id}}"  selected>{{o.name}}</option>
+            {% else %}
+            <option value="{{o.id}}" >{{o.name}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <label>Graphics Engine</label>
+      <select name="engine">
+        {% for e in engines %}
+          {% if e.id == game.graphics_engine_id %}
+            <option value="{{e.id}}"  selected>{{e.name}}</option>
+            {% else %}
+            <option value="{{e.id}}" >{{e.name}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <label>Pricing</label>
+      <input name="price" type="text" value="{{game.price}}" />
+      <button type="submit">Update</button>
+    </form>
+  </body>
+</html>

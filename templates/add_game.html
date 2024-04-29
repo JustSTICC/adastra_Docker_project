@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Game</title>
+  </head>
+  <body>
+    <form action="{{ url_for('add_game') }}" method="POST">
+      <label>Game Title</label>
+      <input name="title" type="text" />
+      <label>Game Developer</label>
+      <select name="developer">
+        {% for o in developers %}
+        <option value="{{o.id}}">{{o.name}}</option>
+        {% endfor %}
+      </select>
+      <label>Graphics Engine</label>
+      <select name="engine">
+        {% for e in engines %}
+        <option value="{{e.id}}">{{e.name}}</option>
+        {% endfor %}
+      </select>
+      <label>Pricing</label>
+      <input name="price" type="text" />
+      <button type="submit">Add Game</button>
+    </form>
+  </body>
+</html>
